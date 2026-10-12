@@ -4,6 +4,8 @@ A responsive website for Sterling Row, a fictional neighbourhood barbershop in D
 
 Visitors can browse services, meet the barbers, find the shop, and book a chair in the browser.
 
+The live site is at [https://sterling-row-barbers.netlify.app/](https://sterling-row-barbers.netlify.app/).
+
 ## Pages
 
 - **Home** shows the shop intro, a short service list, a photo gallery, and a first-visit offer.
