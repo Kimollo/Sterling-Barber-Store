@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact | Sterling Row Barbers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,620&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=3">
+  <link rel="icon" href="assets/favicon.svg">
+</head>
+<body data-page="contact">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header" data-header></header>
+  <main id="main">
+    <div class="page-hero">
+      <p class="eyebrow">Visit or write</p>
+      <h1>Contact</h1>
+      <p>The fastest way to hold a chair is the booking page. Use the note below for group bookings, press, or a question about a service.</p>
+    </div>
+    <section class="section">
+      <div class="contact-layout">
+        <form class="panel" id="contact-form">
+          <h2>Send a note</h2>
+          <div class="form-grid">
+            <label>Name<input name="name" required autocomplete="name"></label>
+            <label>Email<input name="email" type="email" required autocomplete="email"></label>
+            <label class="full">Message<textarea name="message" required></textarea></label>
+          </div>
+          <p class="error" id="contact-error"></p>
+          <button class="btn" type="submit">Send message</button>
+          <p class="muted hidden" id="contact-done">Thanks. Your email app will open with the message addressed to the shop. Send it from there and we reply within one business day.</p>
+        </form>
+        <aside class="summary">
+          <h2>Sterling Row</h2>
+          <p>14 Sterling Row<br>De Waterkant<br>Cape Town, 8001</p>
+          <p><a href="tel:+27215550148">021 555 0148</a><br><a href="mailto:hello@sterlingrow.co.za">hello@sterlingrow.co.za</a></p>
+          <table class="hours">
+            <tr><td>Monday–Friday</td><td>08:00–18:00</td></tr>
+            <tr><td>Saturday</td><td>08:00–16:00</td></tr>
+            <tr><td>Sunday</td><td>Closed</td></tr>
+          </table>
+          <p><a class="btn wide" href="booking.html">Book a chair</a></p>
+        </aside>
+      </div>
+      <iframe class="map" id="map" title="Map showing De Waterkant, Cape Town" src="https://maps.google.com/maps?q=De%20Waterkant%20Cape%20Town&z=15&output=embed"></iframe>
+    </section>
+  </main>
+  <footer class="site-footer" data-footer></footer>
+  <script src="js/partials.js?v=2"></script>
+  <script src="js/site.js"></script>
+  <script>
+    document.getElementById("contact-form").addEventListener("submit", function (event) {
+      event.preventDefault();
+      const data = new FormData(event.currentTarget);
+      const name = String(data.get("name") || "").trim();
+      const email = String(data.get("email") || "").trim();
+      const message = String(data.get("message") || "").trim();
+      const error = document.getElementById("contact-error");
+      if (name.length < 2 || !email.includes("@") || message.length < 5) {
+        error.textContent = "Add your name, a valid email, and a short message.";
+        return;
+      }
+      error.textContent = "";
+      const body = `From: ${name} (${email})\n\n${message}`;
+      window.location.href = `mailto:hello@sterlingrow.co.za?subject=${encodeURIComponent("Note from " + name)}&body=${encodeURIComponent(body)}`;
+      document.getElementById("contact-done").classList.remove("hidden");
+    });
+  </script>
+</body>
+</html>
